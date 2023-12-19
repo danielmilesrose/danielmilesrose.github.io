@@ -90,8 +90,6 @@ function bubbleChart(selected) {
 
         let bubbleLayout = {
             xaxis: {title: "OTU ID"},
-            height: 600,
-            width: 1000
         };
 
         Plotly.newPlot("bubble", bubbleTrace, bubbleLayout);
