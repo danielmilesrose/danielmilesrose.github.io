@@ -27,7 +27,7 @@ function releases(year) {
                         labels: ['Non Holiday', 'Holiday'],
                         type: 'pie',
                         marker: {
-                            colors: ['#596BC2', '#BED1E9']
+                            colors: ['#D1D0EA', '#6A5ACD']
                         }
                     }];
 
