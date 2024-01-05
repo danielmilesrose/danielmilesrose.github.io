@@ -20,7 +20,7 @@ function stackedBar(year) {
             x: dataVariable.map(entry => entry.Month).reverse(),
             y: dataVariable.map(entry => entry.holidayGross).reverse(),
             type: 'bar',
-            marker: { color: '#000000' },
+            marker: { color: '#6A5ACD' },
             opacity: .7,
             name: `${year} Holiday Gross`
           }
@@ -29,7 +29,7 @@ function stackedBar(year) {
             x: dataVariable.map(entry => entry.Month).reverse(),
             y: dataVariable.map(entry => entry.netGross).reverse(),
             type: 'bar',
-            marker: { color: '#596BC2' },
+            marker: { color: '#D1D0EA' },
             opacity: .7,
             name: `${year} Non-Holiday Gross`
           }

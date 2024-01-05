@@ -29,7 +29,7 @@ function overlapHist(year) {
                         bargap: 0.2,
                         opacity: 0.5,
                         marker: {
-                            color: '#BED1E9',
+                            color: '#D1D0EA',
                         },
                     };
                     var trace2 = {
@@ -40,7 +40,7 @@ function overlapHist(year) {
                         bargap: 0.2,
                         opacity: 0.6,
                         marker: {
-                            color: '#596BC2',
+                            color: '#6A5ACD',
                         },
                     };
 
