@@ -57,6 +57,7 @@ function stackedBar(year) {
             yaxis: { title: 'Dollars' },
             legend: { title: '' },
             title: `Gross Movie Revenue in 2023 vs ${year}`,
+            height: 300,
             // hovermode: 'closest',
             // template: 'plotly_white',
             barmode: 'stack' // Stacked bar chart
