@@ -4,330 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Charts</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Welcome to SnapCinema</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        html, body {
+        body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            width: 100%;
+            display: flex; /* Make the body a flex container */
+            height: 100vh;
+            background-color: #f8f8f8;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #6A5ACD;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
             height: 100%;
-            overflow: hidden;
-        }
-        body {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .content {
-            display: flex;
-            flex-direction: column;
-            max-width: 1200px;
-            width: 100%;
-            height: 100%;
+            overflow: auto; /* Allows scrolling */
         }
 
-        span.a {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            border: 1px rgba(255, 255, 0, 0);
-            background-color: rgba(255, 255, 0, 0);
-        }
-        .myHistReleases-container,
-        .myPieReleases-container {
-            flex-grow: 1;
-            display: flex;
-            width: 100%;
-            height: 100%;
-        }
-        #myBar,
-        #myPieReleases,
-        #myHistReleases {
-            width: 100%;
-            height: 100%;
+        .sidebar h2 {
+            color: #fff; /* Ensure sidebar header text is visible */
         }
 
-        .jumbotron {
-            margin-bottom: 10px;
+        .sidebar a {
+            color: #fff; /* Set link color to white for visibility */
+            text-decoration: none;
+            display: block; /* Make each link a block element */
+            margin: 10px 0; /* Add some space between links */
         }
 
-        fieldset {
-            border: none; /* Remove border */
-            padding: 0; /* Remove default padding */
-            text-align: center; /* Center text */
+        .sidebar a:hover {
+            text-decoration: underline;
         }
 
-        select {
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        background-color: #fff;
-        cursor: pointer;
+        .header {
+            background-color: #6A5ACD;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
         }
 
-        /* Arrow icon for the dropdown button */
-        select::after {
-            content: '\25BC'; /* Unicode character for a downward-pointing triangle or arrow */
-            position: absolute;
-            top: 50%;
-            right: 10px;
-            transform: translateY(-50%);
-            font-size: 16px;
-            pointer-events: none;
+        .header h1 {
+            color: #fff; /* Specific color for h1 in header */
         }
 
-        /* Hover effect for the dropdown button */
-        select:hover {
-            border-color: #999;
+        .container {
+            flex-grow: 1; /* Allow the container to take up the remaining width */
+            padding: 20px;
         }
-        
 
-        /* Media query for smaller screens */
+        .card {
+            background-color: #D1D0EA;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #6A5ACD;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
         @media screen and (max-width: 768px) {
-            .myHistReleases-container,
-            .myPieReleases-container {
-                flex-direction: column;
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            .container {
+                padding: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 jumbotron text-center" style="font-family: Verdana; Verdana;text-align: center; color: rgb(77, 88, 99)">
-                    <h3>At The Movies in 2023</h3>
-                    <h5 style="margin-bottom: 0;"><i>Are movies back?</i></h5>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <fieldset>
-                        <label for="bg">Comparison Year</label>
-                        <select id="bg" onchange="optionChange(this.value)">
-                            <option value="2019">2019</option>
-                            <option value="2020">2020</option>
-                            <option value="2021">2021</option>
-                            <option value="2022">2022</option>
-                            <option value="2023">2023</option>
-                        </select>
-                    </fieldset>
-                    <div id="myBar"></div>
-                </div>
-            </div>
-            <span class="a">
-                <div class="row">
-                    <div class="col-md-3">
-                        <span class="a">
-                            <!-- histogram box -->
-                            <div class="myHistReleases-container">
-                                <!-- Container for the Histogram -->
-                                <div id="myHistReleases"></div>
-                                <!-- Histogram Chart goes here -->
-                                <div class="myPieReleases-container">
-                                    <!-- Container for the Pie chart -->
-                                    <div id="myPieReleases"></div>
-                                    <!-- Pie chart goes here -->
-                                </div>
-                            </div>
-                        </span>
-                    </div>
-                </div>      
-            </span>
+    <div class="sidebar">
+        <h2>SnapCinema</h2>
+        <a href="index.html" target="_self">Home</a>
+        <a href="daniel_and_cherif.html" target="_self">At The Movies in 2023</a>
+        <a href="sam.html" target="_self">Top 2023 Movies vs. Top Movies of All Time</a>
+        <!-- Add more links as needed -->
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Welcome to SnapCinema</h1>
+            <p>Exploring the World of Cinema in 2023 and Beyond</p>
+        </div>
+
+        <div class="card">
+            <h2>About SnapCinema</h2>
+            <p>SnapCinema brings you insightful analytics and comparisons of the latest trends in the movie industry. Dive into detailed visualizations of box office performances, distributor success rates, and much more.</p>
+        </div>
+
+        <div class="card">
+            <h3>Top 2023 Movies vs. Top Movies of All Time</h3>
+            <p>Discover how the top movies of 2023 stack up against the greatest hits of all time. Examine revenue, theater distributions, and distributor contributions.</p>
+            <a href="sam.html" target="_self">Explore &raquo;</a>
+        </div>
+
+        <div class="card">
+            <h3>At The Movies in 2023</h3>
+            <p>Take a closer look at the movie industry's performance in 2023. Analyze monthly releases, compare holiday vs non-holiday revenues, and much more.</p>
+            <a href="index.html" target="_self">Learn More &raquo;</a>
         </div>
     </div>
-    <script>
-        function stackedBar(year) {
-            console.log("Stacked Bar Chart - Year:", year);
-
-            fetch('../js/master_merged_df_renamed.csv') // Updated path
-                .then(response => response.text())
-                .then(csvData => {
-                    Papa.parse(csvData, {
-                        header: true,
-                        dynamicTyping: true,
-                        complete: function (papaResults) {
-                            const monthlyData = papaResults.data;
-                            let data2023 = monthlyData.filter((sample) => sample.Year === 2023);
-                            let dataVariable = monthlyData.filter((sample) => sample.Year === parseInt(year));
-
-                            // Log relevant information
-                            console.log("Data for Stacked Bar Chart:", dataVariable);
-
-                            const trace1 = {
-                                x: dataVariable.map(entry => entry.Month).reverse(),
-                                y: dataVariable.map(entry => entry.holidayGross).reverse(),
-                                type: 'bar',
-                                marker: { color: '#6A5ACD' },
-                                opacity: .7,
-                                name: `${year} Holiday Gross`
-                            };
-
-                            const trace2 = {
-                                x: dataVariable.map(entry => entry.Month).reverse(),
-                                y: dataVariable.map(entry => entry.netGross).reverse(),
-                                type: 'bar',
-                                marker: { color: '#D1D0EA' },
-                                opacity: .7,
-                                name: `${year} Non-Holiday Gross`
-                            };
-
-                            const trace3 = {
-                                x: data2023.map(entry => entry.Month).reverse(),
-                                y: data2023.map(entry => entry.cumulativeGross).reverse(),
-                                mode: 'lines',
-                                name: 'seagreen',
-                                opacity: 0.8,
-                                line: {
-                                    width: 6,
-                                    opacity: .1
-                                },
-                                name: "2023 Cumulative Gross"
-                            };
-
-                            const data = [trace1, trace2, trace3];
-                            const layout = {
-                                xaxis: { title: 'Months' },
-                                yaxis: { title: 'Dollars' },
-                                legend: { title: '' },
-                                title: `Gross Movie Revenue in 2023 vs ${year}`,
-                                height: 300,
-                                barmode: 'stack' // Stacked bar chart
-                            };
-
-                            // Render the chart
-                            Plotly.newPlot('myBar', data, layout);
-                        }
-                    });
-                })
-                .catch(error => console.error('Error fetching the CSV file:', error));
-        }
-
-        function releases(year) {
-            console.log("Releases Pie Chart - Year:", year);
-
-            fetch('../js/master_merged_df_renamed.csv') // Updated path
-                .then(response => response.text())
-                .then(csvData => {
-                    Papa.parse(csvData, {
-                        header: true,
-                        dynamicTyping: true,
-                        complete: function (papaResults) {
-                            const monthlyData = papaResults.data;
-                            let dataVariable = monthlyData.filter((sample) => sample.Year === parseInt(year));
-
-                            // Log relevant information
-                            console.log("Data for Releases Pie Chart:", dataVariable);
-
-                            let nonHoliday = dataVariable.map(entry => entry.netReleases);
-                            const sumNonholiday = nonHoliday.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
-                            let holiday = dataVariable.map(entry => entry.holidayReleases);
-                            const sumHoliday = holiday.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-
-                            var data = [{
-                                values: [sumNonholiday, sumHoliday],
-                                labels: ['Non Holiday', 'Holiday'],
-                                type: 'pie',
-                                marker: {
-                                    colors: ['#D1D0EA', '#6A5ACD']
-                                }
-                            }];
-
-                            var layout = {
-                                legend: { title: '' },
-                                title: `Non-Holiday vs Holiday Releases in ${year}`,
-                                height: 300,
-                                domain: {
-                                    x: [0.6, 0.9]
-                                }
-                            };
-
-                            // Render the chart
-                            Plotly.newPlot('myPieReleases', data, layout);
-                        }
-                    });
-                })
-                .catch(error => console.error('Error fetching the CSV file:', error));
-        }
-
-        function overlapHist(year) {
-            console.log("Overlap Histogram - Year:", year);
-
-            fetch('../js/master_merged_df_renamed.csv') // Updated path
-                .then(response => response.text())
-                .then(csvData => {
-                    Papa.parse(csvData, {
-                        header: true,
-                        dynamicTyping: true,
-                        complete: function (papaResults) {
-                            const monthlyData = papaResults.data;
-                            let dataVariable = monthlyData.filter((sample) => sample.Year === parseInt(year));
-
-                            // Log relevant information
-                            console.log("Data for Overlap Histogram:", dataVariable);
-
-                            var x1 = dataVariable.map(entry => entry.netReleases);
-                            var x2 = dataVariable.map(entry => entry.holidayReleases);
-
-                            var trace1 = {
-                                x: x1,
-                                type: "histogram",
-                                name: `${year} Non-Holiday Releases`,
-                                nbinsx: 30,
-                                bargap: 0.2,
-                                opacity: 0.5,
-                                marker: {
-                                    color: '#D1D0EA',
-                                },
-                            };
-                            var trace2 = {
-                                x: x2,
-                                type: "histogram",
-                                name: `${year} Holiday Releases`,
-                                nbinsx: 30,
-                                bargap: 0.2,
-                                opacity: 0.6,
-                                marker: {
-                                    color: '#6A5ACD',
-                                },
-                            };
-
-                            var data = [trace1, trace2];
-                            var layout = {
-                                xaxis: { title: '# of Releases' },
-                                yaxis: { title: 'Frequency' },
-                                legend: { title: '' },
-                                title: `Monthly Release Totals in ${year}`,
-                                barmode: "overlay",
-                                height: 300
-                            };
-
-                            // Render the chart
-                            Plotly.newPlot("myHistReleases", data, layout);
-                        }
-                    });
-                })
-                .catch(error => console.error('Error fetching the CSV file:', error));
-        }
-
-        function optionChange(year) {
-            releases(year);
-            stackedBar(year);
-            overlapHist(year);
-            console.log(year);
-        }
-
-        // Initial function calls
-        stackedBar(2019);
-        releases(2019);
-        overlapHist(2019);
-    </script>
 </body>
 </html>

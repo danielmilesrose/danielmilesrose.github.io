@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 2023 Movies vs. Top Movies of All Time</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.1.0"></script>
+
+    <style>
+        /* Your existing style definitions */
+        h1 {
+            text-align: center;
+            font-size: 28px;
+            font-family: 'Verdana';
+            font-weight: bold;
+            color: #6A5ACD;
+            margin-bottom: 80px;
+        }
+
+        .first-line {
+            font-size: 18px; 
+            font-family: 'Verdana';
+            font-weight: bold; 
+            color: #6A5ACD; 
+        }
+
+        .second-line {
+            font-size: 14px; 
+            font-family: 'Verdana';
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+        }
+
+        /* Sidebar styles from index.html */
+        .sidebar {
+            width: 200px;
+            background-color: #6A5ACD;
+            color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100%;
+            overflow: auto; 
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow: auto;
+        }
+
+        /* Responsive design for smaller screens */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            .main-content {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>SnapCinema</h2>
+        <a href="index.html" target="_self">Home</a>
+        <a href="daniel_and_cherif.html" target="_self">At The Movies in 2023</a>
+        <a href="sam.html" target="_self">Top 2023 Movies vs. Top Movies of All Time</a>
+        <!-- Add more links here if needed -->
+    </div>
+
+    <div class="main-content">
+    <!-- Title at the top of the page -->
+    <h1>Top 2023 Movies vs. Top Movies of All Time</h1>
+
+    <!-- Plain text before Scatter plot -->
+    <p class="first-line">Scatter Plot:</p>
+    <p class="second-line">Movies make how much?? This graph looks at how much the top 200 movies in 2023
+         made and how many theaters each movie was shown in.
+    </p>
+    <div id="myScatter" style="width: 100%; height: 400px; margin-bottom: 80px;"></div>
+
+    <!-- Plain text before Pie chart -->
+    <p class="first-line">Pie Chart:</p>
+    <p class="second-line">Which movie distributors made the best movies? The top 20 movies last year
+        predominently came from Walt Disney Studios.
+    </p>
+    <div style="margin-bottom: 80px;">
+        <canvas id="myPie" width="300" height="300"></canvas>
+    </div>
+
+    <!-- Plain text before Bubble chart -->
+    <p class="first-line">Bubble Chart:</p>
+    <p class="second-line">This chart looks at the top movie distributors of last year and how much each
+        of them made.
+    </p>
+    <div style="margin-bottom: 80px;">
+        <canvas id="myBubble" width="400" height="400"></canvas>
+    </div>
+
+    <!-- Plain text before Bar chart -->
+    <p class="first-line">Bar Chart:</p>
+    <p class="second-line">This chart compares the top 20 movies last year to see how they stand with the
+        top highest grossing movies of all time.
+    </p>
+    <div id="myBar" style="width: 100%; height: 400px; margin-bottom: 80px;"></div>
+</div>
+    <!-- Include your JS files -->
+    <script src="GrossVsTheaters_ScatterPlot.js"></script>
+    <script src="TopDistributorsDistribution_Pie.js"></script>
+    <script src="DistributorVsGross_Bubble.js"></script>
+    <script src="Top2023VsAllTime_Bar.js"></script>
+</body>
+</html>
