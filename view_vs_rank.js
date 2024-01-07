@@ -17,10 +17,9 @@ fetch('movie_trailer_data.csv')
                 mode: 'markers+text',
                 type: 'scatter',
                 text: movie_trailer_data.slice(0, 20).map(entry => `${entry.Rank} - ${entry.VideoName}`),
-                textposition: ['right','right','right','right','bottom','right','bottom','bottom right','top','top','top','bottom right','right','bottom','top','top','top','top','top','top'],
+                textposition: ['right','right','right','right','bottom','right','bottom','bottom right','bottom','top','top right','bottom','right','bottom','top','top','right','top','top right','top'],
                 textfont: {
-                  family:  'Raleway, sans-serif',
-                  size: 10
+                  family:  'Raleway, sans-serif'
                 },
                 marker: { size: 16, color: 'rgb(208, 161, 247)'},
                 name: movie_trailer_data.slice(0, 20).map(entry => entry.VideoName),
