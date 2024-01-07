@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Charts</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chroma-js@2.1.0"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Adding styles for the container for two charts -->
+    <style>
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    background-color: #f8f8f8;
+}
+
+.sidebar {
+    width: 245px; /* Fixed width */
+    background-color: #6A5ACD;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar * {
+    /* Apply styles to all child elements of sidebar to avoid conflicts */
+    box-sizing: border-box;
+}
+
+.sidebar h2 {
+    color: #fff;
+    margin: 0; /* Remove any default margins */
+    padding-bottom: 20px; /* Consistent padding */
+    font-size: 24px; /* Consistent font size */
+    text-align: center; /* Center align text */
+}
+        .sidebar-icon {
+            margin-right: 10px; /* Space between the icon and text */
+            vertical-align: middle; /* Align icon with text vertically */
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center; 
+            margin: 10px 0;
+            gap: 8px;
+        }
+
+        .sidebar i {
+            min-width: 24px; /* Ensure uniform width for all icons */
+            text-align: center; /* Center the icons */
+        }
+
+        .sidebar a span {
+            flex-grow: 1; /* Allow text to take up remaining space */
+            text-align: left; /* Align text to the left */
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            background-color: #6A5ACD;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #fff; /* Specific color for h1 in header */
+        }
+
+        .container {
+            flex-grow: 1;
+            padding: 20px;
+            max-height: 100vh; /* Set maximum height to viewport height */
+            overflow-y: auto; /* Allow vertical scrolling */
+        }
+
+        .card {
+            background-color: #D1D0EA;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #6A5ACD;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            .container {
+                padding: 10px;
+            }
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            display: flex;
+            align-items: top;
+            justify-content: center;
+            padding: 5px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+        }
+        span.a {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          display: inline-block;
+          border: 1px rgba(255, 255, 0, 0);
+          background-color: rgba(255, 255, 0, 0);
+          max-width: 1200px;
+        }
+        .col-md-6 {                 
+          flex-grow: 1;
+          display: flex;          
+          max-width:1200 px;
+        }
+        #myTreemap,
+        #myBubble {
+          width: 1200 px;
+          height: 450 px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <!-- Sidebar content (copied from the last two blocks) -->
+        <h2>SnapCinema</h2>
+        <a href="index.html" target="_self"><i class="fa fa-house"></i> <span>Home</span></a>
+        <a href="daniel_and_cherif.html" target="_self"><i class="fa fa-calendar"></i> <span>At The Movies in 2023</span></a>
+        <a href="sam.html" target="_self"><i class="fa fa-arrow-up"></i> <span>Top 2023 Movies vs. Top Movies of All Time</span></a>
+        <a href="wingtung.html" target="_self"><i class="fa-brands fa-youtube"></i> <span>Movies and Trailers Fun Facts</span></a>
+    </div>
+
+
+    <div class="container">
+        <!-- Title at the top of the page -->
+        <div class="row">
+            <div class="col-md-12 jumbotron text-center" style="font-family: Verdana;text-align: center; color: #6A5ACD">
+                <h1>2023 Worldwide Box Office Dashboard</h1>
+            </div>
+        </div>
+        
+        <!-- bar chart -->
+        <div class="row">
+            <div class="col-md-12">
+                <p class="line-1"style="border: none; font-family: Verdana; text-align: center; color: #6A5ACD; font-size: large; font-weight: bold;">
+                    Movies loved globally:</p>
+                <p class="line-2"style="font-family: Verdana; text-align: center; color: rgb(82, 101, 121); font-size: large;">
+                    Franchise and blockbuster movies attracted moviegoers around the world</p>
+                <div id="myBar"></div>
+
+        <!-- Container for the two charts -->
+            <div class="col-md-6">
+                <!-- treemap box -->
+                <span class="a"> 
+                    <fieldset style="border: none; font-family: Verdana; color: #6A5ACD; font-size: large;">
+                        <h3>The year of Barbenheimer</h3>
+                        <p class="line-1"style="font-family: Verdana; color: rgb(82, 101, 121);">
+                            'Barbie' was adored by US moviegoers</p>
+                        <select id="tm" onchange="updateTreemap()">
+                          <option value="0">Worldwide</option>
+                          <option value="1">Domestic</option>
+                        </select>
+                    </fieldset>
+                    <div class="treemap-container"> <!-- Container for the treemap -->
+                        <div id="myTreemap"></div>
+                        <div id="myTreemap_us" style="display: none;"></div>
+                    </div>
+                </span>
+                <script>
+                    function updateTreemap() {
+                        var selectedValue = document.getElementById('tm').value;
+                        if (selectedValue === '0') {
+                            document.getElementById('myTreemap').style.display = 'block';
+                            document.getElementById('myTreemap_us').style.display = 'none';
+                        } else if (selectedValue === '1') {
+                            document.getElementById('myTreemap').style.display = 'none';
+                            document.getElementById('myTreemap_us').style.display = 'block';
+                        }
+                    }
+                </script>
+                <!-- bubble box -->
+                <span class="a"> 
+                    <fieldset style="border: none; font-family: Verdana; color: #6A5ACD; font-size: large;">
+                        <h3>How US market is different</h3>
+                        <p class="line-1"style="font-family: Verdana; color: rgb(82, 101, 121);">Different markets, varied cinematic tastes</p>
+                        <select id="bc" onchange="updateBubbleChart()">
+                          <option value="0">Worldwide</option>
+                          <option value="1">Domestic</option>
+                        </select>
+                    </fieldset>
+                    <div class="bubble-container"> <!-- Container for the bubble chart -->
+                        <div id="myBubble"></div> 
+                        <div id="myBubble_us" style="display: none;"></div> 
+                    </div>
+                </span>
+                <script> 
+                    function updateBubbleChart() {
+                        var selectedValue = document.getElementById('bc').value;
+                        if (selectedValue === '0') {
+                            document.getElementById('myBubble').style.display = 'block';
+                            document.getElementById('myBubble_us').style.display = 'none';
+                        } else if (selectedValue === '1') {
+                            document.getElementById('myBubble').style.display = 'none';
+                            document.getElementById('myBubble_us').style.display = 'block';
+                        }
+                    }
+                </script>
+            </div>
+        </div>      
+    </div>
+    <script src="t_bar.js"></script>
+    <script src="t_treemap.js"></script>
+    <script src="t_treemap_us.js"></script>
+    <script src="t_bubble.js"></script>
+    <script src="t_bubble_us.js"></script>
+</body>
+</html>
