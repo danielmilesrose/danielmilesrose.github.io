@@ -48,7 +48,7 @@ fetch('movie_trailer_data.csv')
             var layout = {
                 title: "Worldwide Top 20 Movies' Trailer Views and Box Office Sales (as of 12/27/23)",
                 xaxis: {
-                    title: 'Rank',
+                    title: 'Worldwide Rank',
                     range: [0.75, 20.25],
                     autorange: false
                 },

@@ -34,7 +34,7 @@ fetch('movie_trailer_data_reduced.csv')
                                     {
                                         label: 'Linear Fit',
                                         data: regression,
-                                        borderColor: 'rgb(255 122 127 / 80%)',
+                                        borderColor: 'rgb(208, 161, 247)',
                                         backgroundColor: 'transparent',
                                         type: 'line',
                                         pointRadius: 0.5

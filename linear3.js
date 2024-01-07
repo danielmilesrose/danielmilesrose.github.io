@@ -1,5 +1,5 @@
 // Fetch the CSV file
-fetch('movie_trailer_data.csv')
+fetch('movie_trailer_data_reduced.csv')
     .then(response => response.text())
         .then(csvData => {
             // Parse the CSV data using PapaParse
@@ -8,13 +8,13 @@ fetch('movie_trailer_data.csv')
                 dynamicTyping: true, 
                 complete: function(papaResults) {
                     // papaResults.data contains the parsed data as an array of objects
-                    const movie_trailer_data = papaResults.data;
+                    const movie_trailer_data_reduced = papaResults.data;
             
                      // linear regression graph
-                     const xval = movie_trailer_data.slice(0, 20).map(entry =>entry.Rank)
+                     const xval = movie_trailer_data_reduced.slice(0, 20).map(entry =>entry.Rank)
                      const regression = [];
                     for (i=0; i<= xval.length; i++) {
-                        yval = 76042998.40 -2090421.71*i;
+                        yval = 0.7381 -0.0195*i;
                         regression.push({x: i, y: yval})
                     }
                     const ctx = document.getElementById('linear3').getContext('2d');
@@ -24,17 +24,17 @@ fetch('movie_trailer_data.csv')
                                 datasets: [
                                     {
                                         label: 'Trailer Views',
-                                        data: movie_trailer_data.slice(0, 20).map(entry => ({
+                                        data: movie_trailer_data_reduced.slice(0, 20).map(entry => ({
                                             x: entry.Rank,
-                                            y: entry.viewcount})), 
-                                        borderColor: 'rgb(225 150 200)',
-                                        backgroundColor: 'rgb(225 150 200)',
+                                            y: entry.ve8})), 
+                                        borderColor: 'rgb(95 179 104)',
+                                        backgroundColor: 'rgb(95 179 104)',
                                         pointRadius: 4
                                     }, 
                                     {
                                         label: 'Linear Fit',
                                         data: regression,
-                                        borderColor: 'rgb(119 221 119)',
+                                        borderColor: 'rgb(208, 161, 247)',
                                         backgroundColor: 'transparent',
                                         type: 'line',
                                         pointRadius: 0.5
@@ -55,7 +55,7 @@ fetch('movie_trailer_data.csv')
                                             position: 'bottom',
                                             scaleLabel: {
                                                 display: true,
-                                                labelString: 'Rank',
+                                                labelString: 'Worldwide Rank',
                                                 fontSize: 14
                                             },
                                             ticks: {
@@ -69,12 +69,12 @@ fetch('movie_trailer_data.csv')
                                             type: 'linear', 
                                             scaleLabel: {
                                                 display: true,
-                                                labelString: 'viewcount',
+                                                labelString: 'Views (1e8)',
                                                 fontSize: 14
                                             },
                                             ticks: {
-                                                min: 1000000, 
-                                                max: 130000000,
+                                                min: 0.01, 
+                                                max: 1.3,
                                             }
                                         }]
                                 }
