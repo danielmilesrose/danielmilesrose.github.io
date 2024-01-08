@@ -31,23 +31,23 @@ fetch('2023_worldwide_box_office_data.csv')
 
         // Create the treemap trace
         const trace = {
-          type: 'treemap',
-          path: path,
-          labels: top20Data.map(entry => entry['Release Group']),
-          parents: Array(top20Data.length).fill(path),
-          values: top20Data.map(entry => entry['Domestic']),
-          hovertemplate: '<b>%{label}</b><br>Domestic: %{value}',
-          marker: {
-            colorscale: customBlueScale,
-            cmin: Math.min(...top20Data.map(entry => entry['Domestic'])),
-            cmax: Math.max(...top20Data.map(entry => entry['Domestic'])),
-            line: { color: 'white', width: 3 },
-            colorbar: {
-              tickvals: [Math.max(...top20Data.map(entry => entry['Domestic'])), Math.min(...top20Data.map(entry => entry['Domestic']))],
-              ticktext: ['0', '20'],
-              ticks: 'outside',
-              title: 'Rank'
-            }
+            type: 'treemap',
+            path: path,
+            labels: top20Data.map(entry => entry['Release Group']),
+            parents: Array(top20Data.length).fill(path),
+            values: top20Data.map(entry => entry['Domestic']),
+            hovertemplate: '<b>%{label}</b><br>Domestic: %{value}',
+            marker: {
+              colorscale: customBlueScale,
+              cmin: Math.min(...top20Data.map(entry => entry['Domestic'])),
+              cmax: Math.max(...top20Data.map(entry => entry['Domestic'])),
+              line: { color: 'white', width: 3 },
+              colorbar: {
+                tickvals: [Math.max(...top20Data.map(entry => entry['Domestic'])), Math.min(...top20Data.map(entry => entry['Domestic']))],
+                ticktext: ['0', '20'],
+                ticks: 'outside',
+                title: 'Rank'
+              }
           }
         };
 
