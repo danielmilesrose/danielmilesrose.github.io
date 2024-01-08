@@ -95,6 +95,19 @@
         .center-text {
             text-align: center;
         }
+
+        .first-line {
+            font-size: 18px; 
+            font-family: 'Verdana';
+            font-weight: bold; 
+            color: #6A5ACD; 
+        }
+
+        .second-line {
+            font-size: 14px; 
+            font-family: 'Verdana';
+        }
+
     </style>
 </head>
 <body>
@@ -111,7 +124,7 @@
     <div class="main-content">
         <div class="col-md-12 jumbotron text-center">
             <h1>Movies and Trailers Fun Facts</h1>
-            <h3 class="center-text" style="font-size: 18px; font-style: italic;">
+            <h3 class="center-text first-line" style="font-size: 18px; font-style: italic;">
           Do movie trailers on YouTube impact the box office sales?
             </h3>
         </div>
@@ -119,7 +132,7 @@
         <div id="view_vs_rank" style="margin-bottom: 70px; width: 100%; height: 100%;"></div>
         <script src="view_vs_rank.js"></script>
 
-        <p class="center-text" style="font-size: 18px; font-style: italic;"><br>
+        <p class="center-text first-line" style="font-size: 18px; font-style: italic;"><br>
             Worldwide top 20 movies' box office sales and the trailer viewcounts.
   
         </p>
@@ -127,10 +140,10 @@
         <script src="graph2.js"></script>
       
         <div>
-            <p class="center-text" style="font-size: 18px; font-style: italic;">
+            <p class="center-text first-line" style="font-size: 18px; font-style: italic;">
                 Are there any correlation in between trailer views on YouTube and worldwide top 20 movies?  
             </p>
-            <p class="center-text" style="font-size: 16px; font-style: italic;">
+            <p class="center-text second-line" style="font-size: 16px; font-style: italic;">
                 Take a look at the below two graphs for the correlations in between. 
             </p>
             <canvas id="linear3" style="margin-top: 5px; margin-bottom: 70px; width: 30%; height: 20%;"></canvas>

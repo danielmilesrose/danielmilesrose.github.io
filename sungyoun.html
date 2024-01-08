@@ -22,6 +22,22 @@
             overflow-x: hidden; /* Prevent horizontal scrolling */
         }
 
+        .first-line {
+            font-size: 18px; 
+            font-family: 'Verdana';
+            font-weight: bold; 
+            color: #6A5ACD; 
+        }
+
+        .second-line {
+            font-size: 14px; 
+            font-family: 'Verdana';
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
         .sidebar {
             width: 245px;
             background-color: #6A5ACD;
@@ -129,6 +145,8 @@
         <div class="row">
             <div class="col-md-12 jumbotron text-center" style="font-family: Verdana; color: #6A5ACD">
                 <h1 class="centered-header">2023 Worldwide Box Office Dashboard</h1>
+                <p class="first-line center-text">Movies loved globally:</p>
+                <p class="second-line center-text" style="font-family: Verdana; color: rgb(82, 101, 121);">Franchise and blockbuster movies attracted moviegoers around the world</p>
             </div>
         </div>
         
@@ -139,8 +157,8 @@
         <div class="chart-container">
             <div class="chart">
                 <span class="a">
-                    <h3>The year of Barbenheimer</h3>
-                    <p class="line-1" style="font-family: Verdana; color: rgb(82, 101, 121);">
+                    <p class="first-line">The year of Barbenheimer</p>
+                    <p class="second-line" style="font-family: Verdana; color: rgb(82, 101, 121);">
                         'Barbie' was adored by US moviegoers</p>
                     <select id="tm" onchange="toggleChart('myTreemap', 'myTreemap_us')">
                         <option value="0">Worldwide</option>
@@ -153,8 +171,8 @@
 
             <div class="chart">
                 <span class="a">
-                    <h3>How US market is different</h3>
-                    <p class="line-1" style="font-family: Verdana; color: rgb(82, 101, 121);">
+                    <p class="first-line">How US market is different</p>
+                    <p class="second-line" style="font-family: Verdana; color: rgb(82, 101, 121);">
                         Different markets, varied cinematic tastes</p>
                     <select id="bc" onchange="toggleChart('myBubble', 'myBubble_us')">
                         <option value="0">Worldwide</option>

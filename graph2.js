@@ -15,7 +15,7 @@ fetch('movie_trailer_data.csv')
                 x: movie_trailer_data.slice(0, 20).map(entry => entry.Rank),
                 y: movie_trailer_data.slice(0, 20).map(entry => entry.viewcount),
                 mode: 'lines+markers',
-                name: 'Views',
+                name: 'Youtube Views',
                 line: {
                     shape: 'spline',
                     dash: 'solid',
