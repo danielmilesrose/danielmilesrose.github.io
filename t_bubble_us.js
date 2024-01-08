@@ -33,17 +33,16 @@ fetch('2023_worldwide_box_office_data.csv')
           text: top20Data.map(entry => entry['Release Group']),
         };
 
-        // Set the layout
         const layout = {
           title: '2023 US Box Office',
           xaxis: { title: 'Rank' },
           yaxis: { title: 'Million USD' },
-          plot_bgcolor: 'white',
-          paper_bgcolor: 'white',
+          plot_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent plot background
+          paper_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent chart background
           width: 550,
           height: 370,
         };
-
+        
         // Render the bubble chart
         Plotly.newPlot('myBubble_us', [trace], layout);
       }
@@ -60,8 +59,8 @@ function updateBubbleChart(selectedValue) {
     title: '2023 US Box Office',
     xaxis: { title: 'Rank' },
     yaxis: { title: 'Million USD' },
-    plot_bgcolor: 'white',
-    paper_bgcolor: 'white',
+    plot_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent plot background
+    paper_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent chart background
     width: 550,
     height: 370,
   };

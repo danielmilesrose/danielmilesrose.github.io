@@ -120,22 +120,24 @@ fetch('top_movies_2023.csv')
         x: 1,
         y: 1,
         traceorder: 'normal',
-        orientation: 'v', // Keeping it vertical
+        orientation: 'v', 
         font: {
-          size: 10, // Reduce font size
+          size: 10,
         },
-        itemwidth: 150, // Adjust the item width
+        itemwidth: 150,
       },
       margin: {
         l: 80,
-        r: 200, // Increase right margin to give more space to legend
+        r: 200,
         b: 50,
         t: 50,
         pad: 4,
       },
-      width: 1000, // Increase the overall plot width
+      width: 1000,
+      paper_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent background for the chart area
+      plot_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent background for the plot area
     };
-
+    
     Plotly.newPlot('myScatter', traces, layout);
 
     document.getElementById('myScatter').on('legendclick', function (event) {

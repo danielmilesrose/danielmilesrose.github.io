@@ -46,26 +46,28 @@ fetch('movie_trailer_data.csv')
             var data = [trace1, trace2];
             
             var layout = {
-                title: "Worldwide Top 20 Movies' Trailer Views and Box Office Sales (as of 12/27/23)",
-                xaxis: {
-                    title: 'Worldwide Rank',
-                    range: [0.75, 20.25],
-                    autorange: false
-                },
-                yaxis: {
-                    range: [1000000, 1500000000],
-                    autorange: false
-                },
-                legend: {
-                y: 0.5,
-                traceorder: 'reversed',
-                font: {
-                    size: 16
-                }
-                }
-            };
-            
-            Plotly.newPlot('graph2', data, layout);
+              title: "Worldwide Top 20 Movies' Trailer Views and Box Office Sales (as of 12/27/23)",
+              xaxis: {
+                  title: 'Worldwide Rank',
+                  range: [0.75, 20.25],
+                  autorange: false
+              },
+              yaxis: {
+                  range: [1000000, 1500000000],
+                  autorange: false
+              },
+              legend: {
+                  y: 0.5,
+                  traceorder: 'reversed',
+                  font: {
+                      size: 16
+                  }
+              },
+              paper_bgcolor: 'rgba(0, 0, 0, 0)', // Setting the background of the chart area to be transparent
+              plot_bgcolor: 'rgba(0, 0, 0, 0)' // Setting the background of the plotting area to be transparent
+          };
+          
+          Plotly.newPlot('graph2', data, layout);
 
             }
           });

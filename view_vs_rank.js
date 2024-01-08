@@ -28,15 +28,17 @@ fetch('movie_trailer_data.csv')
             var data = [ trace1 ];
 
             var layout = {
-                xaxis: {
-                    title: 'Worldwide Rank',
-                    range: [ 0.75, 22 ],
-                },
-                yaxis: {
-                    title: 'Views',
-                    range: [0, 120000000]
-                },
-                title: "Worldwide Top 20 Movies' Trailer Views on Youtube (as of 12/27/23)",
+              xaxis: {
+                  title: 'Worldwide Rank',
+                  range: [ 0.75, 22 ],
+              },
+              yaxis: {
+                  title: 'Views',
+                  range: [0, 120000000]
+              },
+              title: "Worldwide Top 20 Movies' Trailer Views on Youtube (as of 12/27/23)",
+              paper_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent background
+              plot_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent plot area
               
                 // annotations: [
                 //   {

@@ -57,8 +57,10 @@ fetch('2023_worldwide_box_office_data.csv')
               title: '2023 Worldwide Box Office - Top 20',
               width: 550,
               height: 370,
+              paper_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent chart background
+              plot_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent plot background
             };
-
+            
             // Render the treemap
             Plotly.newPlot('myTreemap', [trace], layout);
           }

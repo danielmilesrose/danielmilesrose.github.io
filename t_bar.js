@@ -31,25 +31,26 @@ fetch('2023_worldwide_box_office_data.csv')
 
             // Set the layout
             const layout = {
-            xaxis: { 
-              dtick: 1,
-              tickmode: 'array',
-              tickvals: worldwideData.slice(0, 20).map(entry => entry.Rank),
-              ticktext: worldwideData.slice(0, 20).map(entry => `${entry.Rank}.${entry['Release Group']}`),
-              tickfont: {size:8},
-              tickangle: 15, 
-            },              
-            yaxis: { title: 'Billion USD'},
-            legend: { title: ''},
-            title: '2023 Worldwide Box Office',
-            hovermode: 'closest',
-            template: 'plotly_white',
-            barmode: 'stack', // Stacked bar chart
-            width: 1150,
-            height: 400,
-          };
-          
-            // Render the chart
+              xaxis: { 
+                dtick: 1,
+                tickmode: 'array',
+                tickvals: worldwideData.slice(0, 20).map(entry => entry.Rank),
+                ticktext: worldwideData.slice(0, 20).map(entry => `${entry.Rank}.${entry['Release Group']}`),
+                tickfont: { size: 8 },
+                tickangle: 15, 
+              },              
+              yaxis: { title: 'Billion USD' },
+              legend: { title: '' },
+              title: '2023 Worldwide Box Office',
+              hovermode: 'closest',
+              template: 'plotly_white',
+              barmode: 'stack',
+              width: 1150,
+              height: 400,
+              paper_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent background for the chart area
+              plot_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent background for the plot area
+            };
+            
             Plotly.newPlot('myBar', data, layout);
           }
         });

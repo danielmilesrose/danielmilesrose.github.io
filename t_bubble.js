@@ -38,12 +38,12 @@ fetch('2023_worldwide_box_office_data.csv')
           title: '2023 Worldwide Box Office',
           xaxis: { title: 'Rank'},
           yaxis: { title: 'Billion USD' },
-          plot_bgcolor: 'white',      
-          paper_bgcolor: 'white',
+          plot_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent plot background
+          paper_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent chart background
           width: 550,
           height: 370,
         };
-
+        
         // Render the bubble chart
         Plotly.newPlot('myBubble', [trace], layout);
       }

@@ -32,20 +32,22 @@ loadData('top_movies_2023.csv', function (thisYearData) {
     // Create the Plotly figure
     var layout = {
       title: 'Top 20 Movies of All Time vs. Top 20 Movies in 2023',
-        titlefont: {
-          size: 20, // Adjust the font size as needed
-          family: 'Verdana', // Change the font family here
-        },
+      titlefont: {
+        size: 20,
+        family: 'Verdana',
+      },
       xaxis: {
         title: 'Ranking',
-        dtick: 1, // Set the tick step to 1
+        dtick: 1,
       },
       yaxis: {
         title: 'Gross Earnings',
-        tickvals: [0, 200000000, 400000000, 600000000, 800000000, 1000000000, 1200000000, 1400000000, 1600000000], // Set specific tick values
-        ticktext: ['$0', '$200M', '$400M', '$600M', '$800M', '$1B', '$1.2B', '$1.4B', '$1.6B'], // Set corresponding tick labels
+        tickvals: [0, 200000000, 400000000, 600000000, 800000000, 1000000000, 1200000000, 1400000000, 1600000000],
+        ticktext: ['$0', '$200M', '$400M', '$600M', '$800M', '$1B', '$1.2B', '$1.4B', '$1.6B'],
       },
-      barmode: 'stack', // Stacked bars
+      barmode: 'stack',
+      paper_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent background for the chart area
+      plot_bgcolor: 'rgba(0, 0, 0, 0)', // Transparent background for the plot area
     };
 
     var trace1 = {
